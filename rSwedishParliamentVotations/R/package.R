@@ -15,5 +15,5 @@
 #' Departmenf of Computer and Information Science, Linköping University.
 #' 
 #' @docType package
-#' @name awesomelab4
+#' @name awesomelab5
 NULL
