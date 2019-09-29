@@ -4,13 +4,13 @@
 #' Swedish Parlament API, specifically for votations.
 #' 
 #' 
-#' @param period an object of class "\code{data.frame}" containing three columns: "v1", "v2" (the nodes of the graph) and "w" (the distance from "v1" to "v2").
-#' @param span numeric scalar object.
-#' @param party nume
-#' @param vote_result nume
-#' @param rows nume
+#' @param period a scalar or vector of year or years. The period year is defined as the year that starts of fiscal year e.g. 2018 for 2018/19. In vector form it will be e.g. [2018, 2019] will be 2018/19, 2019/20. If @param span is TRUE, then c(2017, 2019) will be evalutated as c(2017, 2018, 2019).
+#' @param span boolean argument for setting span or not for @param period.
+#' @param party string with the short names for the parties. E.g. "C" for Centerpartiet.
+#' @param vote_result string with the possible results from the voting. Possible arguments are Ja, Nej, Avstår and Frånvarande.
+#' @param rows integer defining the number of results to return from the query.
 #'
-#' @return \code{dijkstra} returns a vector with the shortest path distances from the starting node to every other node.
+#' @return \code{GET_votation} returns a dataframe from the query.
 #'
 #' @examples
 #' GET_votation(period=2016, vote_result='Ja', rows=1)
@@ -30,8 +30,10 @@ GET_votation <- function(period=NULL, span=FALSE, party=NULL, vote_result=NULL, 
             is.character(vote_result) || is.null(vote_result),
             span == TRUE || span ==FALSE)
   
+  # Base URL used for query
   path <- "http://data.riksdagen.se/voteringlista/?"
   
+  # Handling of period query
   if(length(period) > 0){
     period_formatted <- vector()
     
@@ -48,6 +50,7 @@ GET_votation <- function(period=NULL, span=FALSE, party=NULL, vote_result=NULL, 
     period_query <- ''
   }
   
+  # Handling of party query
   if(length(party) > 0){
     party_formatted <- vector()
     for(par in party){
@@ -63,6 +66,7 @@ GET_votation <- function(period=NULL, span=FALSE, party=NULL, vote_result=NULL, 
     party_query <- ''
   }
   
+  # Handling of vote result query
   if(length(vote_result) > 0){
     vote_formatted <- vector()
     for(vote in vote_result){
@@ -78,18 +82,20 @@ GET_votation <- function(period=NULL, span=FALSE, party=NULL, vote_result=NULL, 
     vote_query <- ''
   }
   
+  # Handling of rows query
   if(!length(period) > 0 && !length(party) > 0 && !length(vote_result) > 0){
     rows_query <- paste0("sz=", rows)
   }else{
     rows_query <- paste0("&sz=", rows)
   }
   
+  # Create final URL including the fill query
   request <- paste0(path, period_query, party_query, vote_query, rows_query, "&utformat=xml", collapse = '')
   
-  print(request)
-  
+  # Read the XML response at the URL
   response <- read_xml(request)
   
+  # Extract all results in a dataframe
   df <- data.frame()
   i <- 1
   for(child in xml_children(response)){
