@@ -1,6 +1,6 @@
 Package: rSwedishParliamentVotations
 Type: Package
-Title: API for Votations in the Swedish Parliment.
+Title: API for Votations in the Swedish Parliment
 Version: 1.0.0
 Date: 2019-09-25
 Authors@R: as.person(c(
