@@ -110,5 +110,26 @@ GET_votation <- function(period=NULL, span=FALSE, party=NULL, vote_result=NULL, 
     df[i,1:length(values)] <- values
     i <- i+1
   }
+  colnames(df) <- c("id_number", 
+                    "fiscal_year", 
+                    "designation", 
+                    "point", 
+                    "votation_id", 
+                    "stakeholder_id",
+                    "name",
+                    "forename",
+                    "surname",
+                    "constituency",
+                    "city",
+                    "party",
+                    "seat_number",
+                    "sex",
+                    "birth_year",
+                    "vote",
+                    "refers",
+                    "votation",
+                    "votation_url",
+                    "dokument_id",
+                    "system_date")
   return(df)
 }
