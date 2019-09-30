@@ -1,1 +1,2 @@
-# Test file for rSwedishParliamentVotations
+context("API Test")
+library(rSwedishParliamentVotations)
