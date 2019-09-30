@@ -45,10 +45,14 @@ GET_votation <- function(period=NULL, span=FALSE, party=NULL, vote_result=NULL, 
     }
     
     for(p in period){
+      fiscal_end <- as.character(as.integer(substr(p, 3, 4)) + 1)
+      if(nchar(fiscal_end) == 1){
+        fiscal_end <- paste0("0", fiscal_end)
+      }
       period_formatted <- 
-        append(period_formatted, paste0(p, '/', as.integer(substr(p, nchar(p)-2+1, nchar(p))) + 1))
+        append(period_formatted, paste0(p, '/', fiscal_end))
     }
-    period_query <- paste0("rm=", paste(period_formatted, sep='&rm=', collapse = ''), collapse = '')
+    period_query <- paste0("rm=", paste(period_formatted, collapse = '&rm='), collapse = '')
   }else{
     period_query <- ''
   }
@@ -60,7 +64,7 @@ GET_votation <- function(period=NULL, span=FALSE, party=NULL, vote_result=NULL, 
       party_formatted <- append(party_formatted, par)
     }
     party_query <- 
-      paste0("parti=", paste(party_formatted, sep='&parti=', collapse = ''), collapse = '')
+      paste0("parti=", paste(party_formatted, collapse = '&parti='), collapse = '')
     
     if(length(period) > 0){
       party_query <- paste0('&', party_query)
@@ -76,7 +80,7 @@ GET_votation <- function(period=NULL, span=FALSE, party=NULL, vote_result=NULL, 
       vote_formatted <- append(vote_formatted, vote)
     }
     vote_query <- 
-      paste0("rost=", paste(vote_formatted, sep='&rost=', collapse = ''), collapse = '')
+      paste0("rost=", paste(vote_formatted, collapse = '&rost='), collapse = '')
     
     if(length(period) > 0 || length(party) > 0){
       vote_query <- paste0('&', vote_query)
@@ -109,6 +113,12 @@ GET_votation <- function(period=NULL, span=FALSE, party=NULL, vote_result=NULL, 
     df[i,1:length(values)] <- values
     i <- i+1
   }
+  
+  if(length(df) == 0){
+    # Handle no response from query. Create empty dataframe and return.
+    df <- data.frame(matrix(ncol = 21, nrow = 0))
+  }
+  
   colnames(df) <- c("id_number", 
                     "fiscal_year", 
                     "designation", 
