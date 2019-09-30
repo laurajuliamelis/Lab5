@@ -27,8 +27,7 @@
 
 
 GET_votation <- function(period=NULL, span=FALSE, party=NULL, vote_result=NULL, rows=5){
-  stopifnot(length(c(period, party, vote_result)) > 0, 
-            is.numeric(rows) && rows > 0,
+  stopifnot(is.numeric(rows) && rows > 0,
             is.numeric(period) || is.null(period),
             is.character(party) || is.null(party),
             is.character(vote_result) || is.null(vote_result),
