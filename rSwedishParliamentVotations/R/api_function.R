@@ -18,6 +18,10 @@
 #' 
 #' @references \url{http://data.riksdagen.se/}
 #'
+#' @importFrom xml2 read_xml
+#' @importFrom xml2 xml_children
+#' @importFrom xml2 xml_text
+#'
 #' @export
 #' 
 

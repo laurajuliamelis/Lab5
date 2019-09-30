@@ -1,4 +1,4 @@
 library(testthat)
-library(awesomelab4)
+library(rSwedishParliamentVotations)
 
-test_check("awesomelab4")
+test_check("rSwedishParliamentVotations")
