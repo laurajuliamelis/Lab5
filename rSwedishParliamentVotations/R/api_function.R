@@ -140,5 +140,36 @@ GET_votation <- function(period=NULL, span=FALSE, party=NULL, vote_result=NULL, 
                     "votation_url",
                     "dokument_id",
                     "system_date")
+  
+  # Function for converting sex to english from swedish
+  .translate_sex <- function(x){
+    if(x == "kvinna"){
+      return("female")
+    }else if(x == "man"){
+      return("male")
+    }
+  }
+  
+  # Function for converting votes to english
+  .translate_vote <- function(x){
+    if(x == "Ja"){
+      return("Yes")
+    }else if(x == "Nej"){
+      return("No")
+    }else if(x == "Avstår"){
+      return("Refrain")
+    }else if(X == "Frånvarande"){
+      return("Absent")
+    }
+  }
+  
+  # Change datatypes within the dataframe
+  df$id_number = as.numeric(as.character(df$id_number))
+  df$stakeholder_id = as.numeric(as.character(df$stakeholder_id))
+  df$seat_number = as.numeric(as.character(df$seat_number))
+  df$birth_year = as.numeric(as.character(df$birth_year))
+  df$sex = sapply(df$sex, .translate_sex)
+  df$vote = sapply(df$vote, .translate_vote)
+  
   return(df)
 }
