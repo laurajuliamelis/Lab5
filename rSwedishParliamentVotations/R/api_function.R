@@ -37,15 +37,16 @@ GET_votation <- function(period=NULL, span=FALSE, party=NULL, vote_result=NULL, 
   path <- "http://data.riksdagen.se/voteringlista/?"
   
   # Handle input to function in english, convert to API input (swedish)
+  # Note: Unicode for non-ASCII character
   if(!is.null(vote_result)){
     if(vote_result == "Yes"){
       vote_result <- "Ja"
     }else if(vote_result == "No"){
       vote_result <- "Nej"
     }else if(vote_result == "Refrain"){
-      vote_result <- "Avstår"
+      vote_result <- "Avst\U00E5r"
     }else if(vote_result == "Absent"){
-      vote_result <- "Frånvarande"
+      vote_result <- "Fr\U00E5nvarande"
     }
   }
 
@@ -176,14 +177,15 @@ GET_votation <- function(period=NULL, span=FALSE, party=NULL, vote_result=NULL, 
   }
   
   # Function for converting votes to english.
+  # Note: Unicode for non-ASCII character
   .translate_vote <- function(x){
     if(x == "Ja"){
       return("Yes")
     }else if(x == "Nej"){
       return("No")
-    }else if(x == "Avstår"){
+    }else if(x == "Avst\U00E5r"){
       return("Refrain")
-    }else if(x == "Frånvarande"){
+    }else if(x == "Fr\U00E5nvarande"){
       return("Absent")
     }
   }
