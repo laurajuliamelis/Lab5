@@ -2,22 +2,22 @@ context("API Test")
 library(rSwedishParliamentVotations)
 
 test_that("GET_votation rejects errounous input", {
-  expect_error(df <- GET_votation(period=c(2016,2018), span= TRUE, party= "C", vote_result='Ja', rows="3"))
+  expect_error(df <- GET_votation(period=c(2016,2018), span= TRUE, party= "C", vote_result='Yes', rows="3"))
   expect_error(df <- GET_votation(period=c(2016,2018), span= TRUE, party= "C", vote_result=3, rows=1))
-  expect_error(df <- GET_votation(period=c(2016,2018), span= TRUE, party= C, vote_result='Ja', rows=1))
-  expect_error(df <- GET_votation(period="c(2016,2018)", span= TRUE, party= C, vote_result='Ja', rows=1))
-  expect_error(df <- GET_votation(period=2016, span= TRUUE, party= "C", vote_result='Ja', rows=1))
+  expect_error(df <- GET_votation(period=c(2016,2018), span= TRUE, party= C, vote_result='Yes', rows=1))
+  expect_error(df <- GET_votation(period="c(2016,2018)", span= TRUE, party= C, vote_result='Yes', rows=1))
+  expect_error(df <- GET_votation(period=2016, span= TRUUE, party= "C", vote_result='Yes', rows=1))
   
 })
 
 test_that("Class is correct", {
-  df <- GET_votation(period=c(2016,2018), span= TRUE, party= "C", vote_result='Ja', rows=1)
+  df <- GET_votation(period=c(2016,2018), span= TRUE, party= "C", vote_result='Yes', rows=1)
   
   expect_true(class(df) == "data.frame")
 })
 
 test_that("Testing outputs for some given values",{
-  df <- GET_votation(period=c(2016,2018), span= TRUE, party= "C", vote_result='Ja', rows=1)
+  df <- GET_votation(period=c(2016,2018), span= TRUE, party= "C", vote_result='Yes', rows=1)
   
   expect_equal(df$id_number, "5008634")
   expect_equal(df$fiscal_year, "2018/19")
@@ -32,9 +32,9 @@ test_that("Testing outputs for some given values",{
   expect_equal(df$city, "")
   expect_equal(df$party, "C")
   expect_equal(df$seat_number, "168")
-  expect_equal(df$sex, "kvinna")
+  expect_equal(df$sex, "female")
   expect_equal(df$birth_year, "1972")
-  expect_equal(df$vote, "Ja")
+  expect_equal(df$vote, "Yes")
   expect_equal(df$refers, "sakfrågan")
   expect_equal(df$votation, "huvud")
   expect_equal(df$votation_url, "http://data.riksdagen.se/votering/F06B69C1-265A-4916-86FD-C03C1C3BB334")
