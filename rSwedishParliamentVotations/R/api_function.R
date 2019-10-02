@@ -13,13 +13,13 @@
 #' @return \code{GET_votation} returns a dataframe from the query.
 #'
 #' @examples
-#' GET_votation(period=2016, vote_result='Ja', rows=1)
+#' GET_votation(period=2016, vote_result='Yes', rows=1)
 #' GET_votation(party='C', rows=1)
 #' 
 #' @references \url{http://data.riksdagen.se/}
 #'
 #' @importFrom xml2 read_xml
-#' @importFrom xml2 xml_children
+#' @importFrom xml2 xml_find_all
 #' @importFrom xml2 xml_text
 #'
 #' @export
@@ -36,6 +36,19 @@ GET_votation <- function(period=NULL, span=FALSE, party=NULL, vote_result=NULL, 
   # Base URL used for query
   path <- "http://data.riksdagen.se/voteringlista/?"
   
+  # Handle input to function in english, convert to API input (swedish)
+  if(!is.null(vote_result)){
+    if(vote_result == "Yes"){
+      vote_result <- "Ja"
+    }else if(vote_result == "No"){
+      vote_result <- "Nej"
+    }else if(vote_result == "Refrain"){
+      vote_result <- "Avstår"
+    }else if(vote_result == "Absent"){
+      vote_result <- "Frånvarande"
+    }
+  }
+
   # Handling of period query
   if(length(period) > 0){
     period_formatted <- vector()

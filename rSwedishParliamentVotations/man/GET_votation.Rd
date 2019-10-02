@@ -26,7 +26,7 @@ GET_votation(period = NULL, span = FALSE, party = NULL,
 Swedish Parlament API, specifically for votations.
 }
 \examples{
-GET_votation(period=2016, vote_result='Ja', rows=1)
+GET_votation(period=2016, vote_result='Yes', rows=1)
 GET_votation(party='C', rows=1)
 
 }
