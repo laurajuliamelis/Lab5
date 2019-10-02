@@ -103,15 +103,27 @@ GET_votation <- function(period=NULL, span=FALSE, party=NULL, vote_result=NULL, 
   response <- read_xml(request)
   
   # Extract all results in a dataframe
-  df <- data.frame()
-  i <- 1
-  for(child in xml_children(response)){
-    values <- vector()
-    for(subchild in xml_children(child)){
-      values <- append(values, xml_text(subchild))
-    }
-    df[i,1:length(values)] <- values
-    i <- i+1
+  df <- data.frame("V1" = c(1:rows))
+  
+  # Loop approach: n = 500 is 1070ms, n = 50000 is 13750ms
+  # i <- 1
+  # for(child in xml_children(response)){
+  #   values <- vector()
+  #   for(subchild in xml_children(child)){
+  #     values <- append(values, xml_text(subchild))
+  #   }
+  #   df[i,1:length(values)] <- values
+  #   i <- i+1
+  # }
+  
+  # Vectorized approach: n = 500 is 1130ms, n = 50000 is 4300ms
+  node_names <- c("//hangar_id", "//rm", "//beteckning", "//punkt", "//votering_id",
+                  "//intressent_id", "//namn", "//fornamn", "//efternamn", "//valkrets", 
+                  "//iort", "//parti", "//banknummer", "//kon", "//fodd", "//rost", "//avser", 
+                  "//votering//votering", "//votering_url_xml", "//dok_id", "//systemdatum")
+  for(i in 1:length(node_names)){
+    column <- xml_text(xml_find_all(response, node_names[i]))
+    df[,i] <- column
   }
   
   if(length(df) == 0){
