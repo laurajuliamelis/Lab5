@@ -116,7 +116,7 @@ GET_votation <- function(period=NULL, span=FALSE, party=NULL, vote_result=NULL, 
   #   i <- i+1
   # }
   
-  # Vectorized approach: n = 500 is 1130ms, n = 50000 is 4300ms
+  # Vectorized approach: n = 500 is 1130ms, n = 50000 is 4300ms, n = 90000 is 5140ms
   node_names <- c("//hangar_id", "//rm", "//beteckning", "//punkt", "//votering_id",
                   "//intressent_id", "//namn", "//fornamn", "//efternamn", "//valkrets", 
                   "//iort", "//parti", "//banknummer", "//kon", "//fodd", "//rost", "//avser", 
