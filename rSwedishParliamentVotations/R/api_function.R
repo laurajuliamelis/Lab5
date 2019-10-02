@@ -142,7 +142,6 @@ GET_votation <- function(period=NULL, span=FALSE, party=NULL, vote_result=NULL, 
                     "system_date")
   
   # Function for converting sex to english from swedish
-  # No swedish letters, no need for different encoding.
   .translate_sex <- function(x){
     if(x == "kvinna"){
       return("female")
@@ -151,9 +150,7 @@ GET_votation <- function(period=NULL, span=FALSE, party=NULL, vote_result=NULL, 
     }
   }
   
-  # Function for converting votes to english. 
-  # Use UTF-8 encoding for strings, since they contain swedish letters.
-  # Otherwise it will be system dependent.
+  # Function for converting votes to english.
   .translate_vote <- function(x){
     if(x == "Ja"){
       return("Yes")
