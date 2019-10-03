@@ -8,7 +8,7 @@
 #' @param span boolean argument for setting span or not for @param period.
 #' @param party string with the short names for the parties. E.g. "C" for Centerpartiet.
 #' @param vote_result string with the possible results from the voting. Possible arguments are Ja, Nej, Avstår and Frånvarande.
-#' @param rows integer defining the number of results to return from the query.
+#' @param rows integer defining the number of results to return from the query. [0 - 90 000] 
 #'
 #' @return \code{GET_votation} returns a dataframe from the query.
 #'
@@ -27,7 +27,7 @@
 
 
 GET_votation <- function(period=NULL, span=FALSE, party=NULL, vote_result=NULL, rows=5){
-  stopifnot(is.numeric(rows) && rows > 0,
+  stopifnot(is.numeric(rows) && rows > 0 && rows <= 90000,
             is.numeric(period) || is.null(period),
             is.character(party) || is.null(party),
             is.character(vote_result) || is.null(vote_result),

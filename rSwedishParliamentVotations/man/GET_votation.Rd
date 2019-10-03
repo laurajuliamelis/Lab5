@@ -16,7 +16,7 @@ GET_votation(period = NULL, span = FALSE, party = NULL,
 
 \item{vote_result}{string with the possible results from the voting. Possible arguments are Ja, Nej, Avstår and Frånvarande.}
 
-\item{rows}{integer defining the number of results to return from the query.}
+\item{rows}{integer defining the number of results to return from the query. [0 - 90 000]}
 }
 \value{
 \code{GET_votation} returns a dataframe from the query.
