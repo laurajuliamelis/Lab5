@@ -1,9 +1,9 @@
 # Project Status
 [![Build Status](https://travis-ci.org/laurajuliamelis/Lab5.svg?branch=master)](https://travis-ci.org/laurajuliamelis/Lab5)
 
-# Lab 5: Some R Package
+# Lab 5: Swedish Parliament Votation API
 
-OA short and simple R package containing two useful algorithms. 
+Intermediate API package for the Swedish Parliament Votations.
 
 ## Getting Started
 
@@ -23,7 +23,7 @@ install.packages("testthat")
 Run the following in R:
 
 ```
-devtools::install_github("MiniDlicious/Lab4", subdir="awesomelab4")
+devtools::install_github("laurajuliamelis/Lab5", subdir="rSwedishParliamentVotations")
 ```
 
 ## Running the tests
