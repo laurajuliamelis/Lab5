@@ -30,7 +30,7 @@ GET_votation <- function(period=NULL, span=FALSE, party=NULL, vote_result=NULL, 
   stopifnot(is.numeric(rows) && rows > 0 && rows <= 90000,
             is.numeric(period) || is.null(period),
             is.character(party) || is.null(party),
-            is.character(vote_result) || is.null(vote_result),
+            length(vote_result) <= 1 && (is.character(vote_result) || is.null(vote_result)),
             span == TRUE || span ==FALSE)
   
   # Base URL used for query
@@ -117,7 +117,7 @@ GET_votation <- function(period=NULL, span=FALSE, party=NULL, vote_result=NULL, 
   response <- read_xml(request)
   
   # Extract all results in a dataframe
-  df <- data.frame("V1" = c(1:rows))
+  #df <- data.frame("V1" = 1)
   
   # Loop approach: n = 500 is 1070ms, n = 50000 is 13750ms
   # i <- 1
@@ -137,7 +137,12 @@ GET_votation <- function(period=NULL, span=FALSE, party=NULL, vote_result=NULL, 
                   "//votering//votering", "//votering_url_xml", "//dok_id", "//systemdatum")
   for(i in 1:length(node_names)){
     column <- xml_text(xml_find_all(response, node_names[i]))
-    df[,i] <- column
+    if(i == 1){
+      # Extract all results in a dataframe
+      df <- data.frame("V1" = column)
+    }else{
+      df[,i] <- column
+    }
   }
   
   if(length(df) == 0){
