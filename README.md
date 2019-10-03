@@ -32,12 +32,12 @@ devtools::install_github("laurajuliamelis/Lab5", subdir="rSwedishParliamentVotat
 devtools::test()
 ```
 
-### Break down into end to end tests
+### Shiny Visualisations
 
-Explain what these tests test and why
+This project has a Shiny application. Run the following to start Shiny:
 
 ```
-Give an example
+runGitHub("laurajuliamelis/Lab5Shiny", subdir = "ShinySwedishParliamentVotations")
 ```
 
 ## Built With
