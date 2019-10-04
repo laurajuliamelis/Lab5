@@ -5,7 +5,7 @@
 \title{GET_votation}
 \usage{
 GET_votation(period = NULL, span = FALSE, party = NULL,
-  vote_result = NULL, rows = 5)
+  vote_result = NULL, rows = 500)
 }
 \arguments{
 \item{period}{a scalar or vector of year or years. The period year is defined as the year that starts of fiscal year e.g. 2018 for 2018/19. In vector form it will be e.g. [2018, 2019] will be 2018/19, 2019/20. If @param span is TRUE, then c(2017, 2019) will be evalutated as c(2017, 2018, 2019).}
@@ -16,7 +16,7 @@ GET_votation(period = NULL, span = FALSE, party = NULL,
 
 \item{vote_result}{string with the possible results from the voting. Possible arguments are Ja, Nej, Avstår and Frånvarande.}
 
-\item{rows}{integer defining the number of results to return from the query. [0 - 90 000]}
+\item{rows}{integer defining the number of results to return from the query. [0 - 10 000]}
 }
 \value{
 \code{GET_votation} returns a dataframe from the query.
