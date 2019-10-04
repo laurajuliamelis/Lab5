@@ -23,7 +23,7 @@ install.packages("testthat")
 Run the following in R:
 
 ```
-devtools::install_github("laurajuliamelis/Lab5", subdir="rSwedishParliamentVotations")
+devtools::install_github("laurajuliamelis/SwedishParliamentVotationAPI", subdir="rSwedishParliamentVotations")
 ```
 
 ## Running the tests
@@ -34,10 +34,10 @@ devtools::test()
 
 ### Shiny Visualisations
 
-This project has a Shiny application. Run the following to start Shiny:
+This project has a Shiny application, [GitHub Repository](https://github.com/laurajuliamelis/SwedishParliamentVotationShiny). Run the following to start Shiny:
 
 ```
-runGitHub("laurajuliamelis/Lab5Shiny", subdir = "ShinySwedishParliamentVotations")
+runGitHub("laurajuliamelis/SwedishParliamentVotationShiny", subdir = "ShinySwedishParliamentVotations")
 ```
 
 ## Built With
