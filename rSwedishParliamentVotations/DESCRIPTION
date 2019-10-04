@@ -7,7 +7,7 @@ Authors@R: as.person(c(
     "Laura Julià Melis <laaurajulia@gmail.com> [aut, cre]",
     "Martin Svensson <martin.k.r.svensson@gmail.com> [aut]"
   ))
-Description: This package TODO.
+Description: The rSwedishParliamentVotations package contains a function GET_votation, used to query information for votations in the Swedish Parliment.
 License: MIT + file LICENSE
 Encoding: UTF-8
 RoxygenNote: 6.1.1

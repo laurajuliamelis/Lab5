@@ -37,7 +37,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -320,10 +320,10 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <div id="arguments." class="section level3">
 <h3>Arguments.</h3>
 <ul>
-<li><strong>period:</strong> a scalar or vector of year or years. The period year is defined as the year that starts of fiscal year e.g. 2018 for 2018/19. In vector form it will be e.g. [2018, 2019] will be 2018/19, 2019/20. If <span class="citation">@param</span> span is TRUE, then c(2017, 2019) will be evalutated as c(2017, 2018, 2019).</li>
+<li><strong>period:</strong> a scalar or vector of year or years. The period year is defined as the year that starts of fiscal year e.g. 2018 for 2018/19. In vector form it will be e.g. [2018, 2019] will be 2018/19, 2019/20. If <span class="citation">@param</span> span is TRUE, then c(2017, 2019) will be evalutated as c(2017, 2018, 2019).</li>
 <li><strong>span:</strong> boolean argument for setting span or not for <span class="citation">@param</span> period.</li>
 <li><strong>party:</strong> string with the short names for the parties. E.g. “C” for Centerpartiet.</li>
-<li><strong>vote_result:</strong> string with the possible results from the voting. Possible arguments are Ja, Nej, Avstår and Frånvarande.</li>
+<li><strong>vote_result:</strong> string with the possible results from the voting. Possible arguments are Yes, No, Refrain and Absent.</li>
 <li><strong>rows:</strong> integer defining the number of results to return from the query.</li>
 </ul>
 </div>
@@ -411,16 +411,16 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <p>This section shows how to use <code>GET_votation()</code> with some examples.</p>
 <div id="initialization." class="section level3">
 <h3>Initialization.</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># Loading requiered packages.</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">library</span>(rSwedishParliamentVotations)</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co"># Setting the function arguments.</span></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5">df &lt;-<span class="st"> </span><span class="kw">GET_votation</span>(<span class="dt">period=</span><span class="kw">c</span>(<span class="dv">2016</span>,<span class="dv">2018</span>), <span class="dt">span=</span> <span class="ot">TRUE</span>, <span class="dt">party=</span> <span class="st">&quot;C&quot;</span>, <span class="dt">vote_result=</span><span class="st">'Ja'</span>, <span class="dt">rows=</span><span class="dv">30</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># Loading requiered packages.</span></a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="kw">library</span>(rSwedishParliamentVotations)</a>
+<a class="sourceLine" id="cb2-3" title="3"></a>
+<a class="sourceLine" id="cb2-4" title="4"><span class="co"># Setting the function arguments.</span></a>
+<a class="sourceLine" id="cb2-5" title="5">df &lt;-<span class="st"> </span><span class="kw">GET_votation</span>(<span class="dt">period=</span><span class="kw">c</span>(<span class="dv">2016</span>,<span class="dv">2018</span>), <span class="dt">span=</span> <span class="ot">TRUE</span>, <span class="dt">party=</span> <span class="st">&quot;C&quot;</span>, <span class="dt">vote_result=</span><span class="st">&#39;Ja&#39;</span>, <span class="dt">rows=</span><span class="dv">30</span>)</a></code></pre></div>
 </div>
 <div id="output" class="section level3">
 <h3>Output</h3>
 <p>The function returns an object of class “data.frame” with 21 columns (variables).</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">head</span>(df)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">head</span>(df)</a></code></pre></div>
 <pre><code>##   id_number fiscal_year designation point
 ## 1   5008634     2018/19         AU1     1
 ## 2   5008634     2018/19         AU1     1

@@ -14,7 +14,7 @@ GET_votation(period = NULL, span = FALSE, party = NULL,
 
 \item{party}{string with the short names for the parties. E.g. "C" for Centerpartiet.}
 
-\item{vote_result}{string with the possible results from the voting. Possible arguments are Ja, Nej, Avstår and Frånvarande.}
+\item{vote_result}{string with the possible results from the voting. Possible arguments are Yes, No, Refrain and Absent.}
 
 \item{rows}{integer defining the number of results to return from the query. [0 - 10 000]}
 }
