@@ -23,10 +23,55 @@ GET_votation makes a GET request for data from the Swedish Parlament API, specif
   - **period:** a scalar or vector of year or years. The period year is defined as the year that starts of fiscal year e.g. 2018 for 2018/19. In vector form it will be e.g. [2018, 2019] will be 2018/19, 2019/20. If @param span is TRUE, then c(2017, 2019) will be evalutated as c(2017, 2018, 2019).
   - **span:** boolean argument for setting span or not for @param period.
   - **party:** string with the short names for the parties. E.g. "C" for Centerpartiet.
-  - **vote_result:** string with the possible results from the voting. Possible arguments are Ja, Nej, Avstår and Frånvarande.
+  - **vote_result:** string with the possible results from the voting. Possible arguments are Yes, No, Refrain and Absent.
   - **rows:** integer defining the number of results to return from the query.
-  
-## 3. Example. 
+ 
+## 3. API limitations.
+
+This section comment some limitations in the Swedish Parliament API that has been taken into account for this package. 
+
+#### Period.
+The fiscal year range is between 2002 to present. This is due to that there is no data before this year. 
+
+#### Party.
+There are a predefined options:
+```{r include=FALSE}
+library(knitr)
+```
+
+```{r, results='asis', echo=FALSE}
+parties.df <- data.frame("Party"= c("Centerpartiet", 
+                                   "Folkpartiet", 
+                                   "Liberalerna", 
+                                   "Kristdemokraterna",
+                                   "Miljöpartiet",
+                                   "Moderata Samlingspartiet",
+                                   "Socialdemokraterna",
+                                   "Sverigedemokraterna",
+                                   "Vänsterpartiet",
+                                   "Others"), 
+                        "Code"= c("C", "FP", "L", "KD", "MP", "M", "S", "SD", "V", "-" ))
+kable(parties.df, align = "c")
+```
+
+Note that multiple options can be queried from the API.
+
+#### Vote_result.
+
+There are four diferent options: 
+
+  - **Yes**
+  - **No**
+  - **Refrain**
+  - **Absent**
+
+Note that only one option can be queried at a time from the API. Otherwise, if left empty, all the options are queried.
+
+#### Rows. 
+
+It is not possible to query more than 10000 rows.
+
+## 4. Example. 
 This section shows how to use `GET_votation()` with some examples.
 
 ### Initialization.

@@ -328,8 +328,86 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </ul>
 </div>
 </div>
+<div id="api-limitations." class="section level2">
+<h2>3. API limitations.</h2>
+<p>This section comment some limitations in the Swedish Parliament API that has been taken into account for this package.</p>
+<div id="period." class="section level4">
+<h4>Period.</h4>
+<p>The fiscal year range is between 2002 to present. This is due to that there is no data before this year.</p>
+</div>
+<div id="party." class="section level4">
+<h4>Party.</h4>
+<p>There are a predefined options:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Party</th>
+<th align="center">Code</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Centerpartiet</td>
+<td align="center">C</td>
+</tr>
+<tr class="even">
+<td align="center">Folkpartiet</td>
+<td align="center">FP</td>
+</tr>
+<tr class="odd">
+<td align="center">Liberalerna</td>
+<td align="center">L</td>
+</tr>
+<tr class="even">
+<td align="center">Kristdemokraterna</td>
+<td align="center">KD</td>
+</tr>
+<tr class="odd">
+<td align="center">Miljöpartiet</td>
+<td align="center">MP</td>
+</tr>
+<tr class="even">
+<td align="center">Moderata Samlingspartiet</td>
+<td align="center">M</td>
+</tr>
+<tr class="odd">
+<td align="center">Socialdemokraterna</td>
+<td align="center">S</td>
+</tr>
+<tr class="even">
+<td align="center">Sverigedemokraterna</td>
+<td align="center">SD</td>
+</tr>
+<tr class="odd">
+<td align="center">Vänsterpartiet</td>
+<td align="center">V</td>
+</tr>
+<tr class="even">
+<td align="center">Others</td>
+<td align="center">-</td>
+</tr>
+</tbody>
+</table>
+<p>Note that multiple options can be queried from the API.</p>
+</div>
+<div id="vote_result." class="section level4">
+<h4>Vote_result.</h4>
+<p>There are four diferent options:</p>
+<ul>
+<li><strong>Yes</strong></li>
+<li><strong>No</strong></li>
+<li><strong>Refrain</strong></li>
+<li><strong>Absent</strong></li>
+</ul>
+<p>Note that only one option can be queried at a time from the API. Otherwise, if left empty, all the options are queried.</p>
+</div>
+<div id="rows." class="section level4">
+<h4>Rows.</h4>
+<p>It is not possible to query more than 10000 rows.</p>
+</div>
+</div>
 <div id="example." class="section level2">
-<h2>3. Example.</h2>
+<h2>4. Example.</h2>
 <p>This section shows how to use <code>GET_votation()</code> with some examples.</p>
 <div id="initialization." class="section level3">
 <h3>Initialization.</h3>
@@ -351,26 +429,26 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## 5   5019713     2018/19        AU10     5
 ## 6   5019713     2018/19        AU10     5
 ##                            votation_id stakeholder_id             name
-## 1 F06B69C1-265A-4916-86FD-C03C1C3BB334   084624777218   Helena Lindahl
-## 2 F06B69C1-265A-4916-86FD-C03C1C3BB334  0364687971222  Alireza Akhondi
-## 3 F06B69C1-265A-4916-86FD-C03C1C3BB334  0238095659621  Linda Ylivainio
-## 4 CAD9EB67-4AD9-430C-82E7-3E0C8324E422  0494843794418     Martin Ådahl
-## 5 87A14ACB-9ECE-4853-AF3D-71B77DA9D1B9  0155487380917 Kerstin Lundgren
-## 6 87A14ACB-9ECE-4853-AF3D-71B77DA9D1B9  0677738818613   Anders Åkesson
+## 1 F06B69C1-265A-4916-86FD-C03C1C3BB334    84624777218   Helena Lindahl
+## 2 F06B69C1-265A-4916-86FD-C03C1C3BB334   364687971222  Alireza Akhondi
+## 3 F06B69C1-265A-4916-86FD-C03C1C3BB334   238095659621  Linda Ylivainio
+## 4 CAD9EB67-4AD9-430C-82E7-3E0C8324E422   494843794418     Martin Ådahl
+## 5 87A14ACB-9ECE-4853-AF3D-71B77DA9D1B9   155487380917 Kerstin Lundgren
+## 6 87A14ACB-9ECE-4853-AF3D-71B77DA9D1B9   677738818613   Anders Åkesson
 ##   forename   surname      constituency city party seat_number    sex
-## 1   Helena   Lindahl Västerbottens län          C         168 kvinna
-## 2  Alireza   Akhondi    Stockholms län          C         285    man
-## 3    Linda Ylivainio   Norrbottens län          C         349 kvinna
-## 4   Martin     Ådahl Stockholms kommun          C         278    man
-## 5  Kerstin  Lundgren    Stockholms län          C           3 kvinna
-## 6   Anders   Åkesson        Kalmar län          C          11    man
+## 1   Helena   Lindahl Västerbottens län          C         168 female
+## 2  Alireza   Akhondi    Stockholms län          C         285   male
+## 3    Linda Ylivainio   Norrbottens län          C         349 female
+## 4   Martin     Ådahl Stockholms kommun          C         278   male
+## 5  Kerstin  Lundgren    Stockholms län          C           3 female
+## 6   Anders   Åkesson        Kalmar län          C          11   male
 ##   birth_year vote    refers votation
-## 1       1972   Ja sakfrågan    huvud
-## 2       1980   Ja sakfrågan    huvud
-## 3       1975   Ja sakfrågan    huvud
-## 4       1969   Ja sakfrågan    huvud
-## 5       1955   Ja sakfrågan    huvud
-## 6       1958   Ja sakfrågan    huvud
+## 1       1972  Yes sakfrågan    huvud
+## 2       1980  Yes sakfrågan    huvud
+## 3       1975  Yes sakfrågan    huvud
+## 4       1969  Yes sakfrågan    huvud
+## 5       1955  Yes sakfrågan    huvud
+## 6       1958  Yes sakfrågan    huvud
 ##                                                             votation_url
 ## 1 http://data.riksdagen.se/votering/F06B69C1-265A-4916-86FD-C03C1C3BB334
 ## 2 http://data.riksdagen.se/votering/F06B69C1-265A-4916-86FD-C03C1C3BB334
