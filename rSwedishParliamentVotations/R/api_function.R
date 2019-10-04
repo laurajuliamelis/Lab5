@@ -7,7 +7,7 @@
 #' @param period a scalar or vector of year or years. The period year is defined as the year that starts of fiscal year e.g. 2018 for 2018/19. In vector form it will be e.g. [2018, 2019] will be 2018/19, 2019/20. If @param span is TRUE, then c(2017, 2019) will be evalutated as c(2017, 2018, 2019).
 #' @param span boolean argument for setting span or not for @param period.
 #' @param party string with the short names for the parties. E.g. "C" for Centerpartiet.
-#' @param vote_result string with the possible results from the voting. Possible arguments are Ja, Nej, Avstår and Frånvarande.
+#' @param vote_result string with the possible results from the voting. Possible arguments are Yes, No, Refrain and Absent.
 #' @param rows integer defining the number of results to return from the query. [0 - 10 000] 
 #'
 #' @return \code{GET_votation} returns a dataframe from the query.
