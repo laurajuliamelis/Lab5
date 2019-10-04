@@ -38,3 +38,8 @@ test_that("GET_votation query size is equal or smaller to rows and allows for no
   expect_true(nrow(GET_votation(period=2002, party="-", vote_result = "No", rows = 500)) == 0)
 })
 
+test_that("GET_votation won't duplicate data within the data frame", {
+  # Query will return ~400 rows, check that these are not repeated if the query can accept more rows.
+  expect_false(any(duplicated(GET_votation(period=c(2004, 2007), span= TRUE, party="-", vote_result = "No", rows = 10000))))
+})
+
